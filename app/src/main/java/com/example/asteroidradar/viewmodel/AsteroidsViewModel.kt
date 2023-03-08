@@ -72,7 +72,6 @@ class AsteroidsViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     private suspend fun loadData(startDate: String, endDate: String) {
-        println("JSDFLKJSDFLKJFDSLKJSDF")
         viewModelScope.launch {
             try {
                 val list = fromJson(

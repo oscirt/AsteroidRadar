@@ -102,7 +102,7 @@ class AsteroidsListFragment : Fragment() {
                 }
                 return true
             }
-        })
+        }, viewLifecycleOwner)
 
         return binding.root
     }
