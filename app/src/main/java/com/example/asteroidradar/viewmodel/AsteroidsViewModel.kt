@@ -109,6 +109,8 @@ class AsteroidsViewModel(application: Application) : AndroidViewModel(applicatio
 
     fun allAsteroids(): Flow<List<Asteroids>> = dao.getAsteroids(currentDate)
 
+    fun oneDayAsteroids(): Flow<List<Asteroids>> = dao.getOneDayAsteroids(currentDate)
+
     private fun connect() {
         viewModelScope.launch {
             val latestDate = dao.getLatestDate()

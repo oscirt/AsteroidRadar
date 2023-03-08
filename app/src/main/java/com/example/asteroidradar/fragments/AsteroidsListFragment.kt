@@ -1,23 +1,19 @@
 package com.example.asteroidradar.fragments
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.coroutineScope
 import androidx.navigation.fragment.findNavController
-import com.example.asteroidradar.adapters.AsteroidsListAdapter
-import com.example.asteroidradar.viewmodel.AsteroidsViewModel
-import com.example.asteroidradar.adapters.AsteroidItemClickListener
 import com.example.asteroidradar.R
-import com.example.asteroidradar.adapters.DefaultClickListener
+import com.example.asteroidradar.adapters.AsteroidItemClickListener
+import com.example.asteroidradar.adapters.AsteroidsListAdapter
 import com.example.asteroidradar.databinding.FragmentListBinding
 import com.example.asteroidradar.models.Asteroid
-import kotlinx.coroutines.flow.collect
+import com.example.asteroidradar.viewmodel.AsteroidsViewModel
 import kotlinx.coroutines.launch
 
 class AsteroidsListFragment : Fragment() {
@@ -60,6 +56,53 @@ class AsteroidsListFragment : Fragment() {
                 })
             }
         }
+
+        requireActivity().addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.menu, menu)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                if (menuItem.itemId == R.id.show_today) {
+                    lifecycle.coroutineScope.launch {
+                        viewModel.oneDayAsteroids().collect { list ->
+                            (binding.asteroidsList.adapter as AsteroidsListAdapter).submitList(list.map {
+                                Asteroid(
+                                    it.id,
+                                    it.name,
+                                    it.magnitude,
+                                    it.isHazardous,
+                                    it.estimatedDiameter,
+                                    it.date,
+                                    it.close_date,
+                                    it.kps,
+                                    it.ams
+                                )
+                            })
+                        }
+                    }
+                } else {
+                    lifecycle.coroutineScope.launch {
+                        viewModel.allAsteroids().collect { list ->
+                            (binding.asteroidsList.adapter as AsteroidsListAdapter).submitList(list.map {
+                                Asteroid(
+                                    it.id,
+                                    it.name,
+                                    it.magnitude,
+                                    it.isHazardous,
+                                    it.estimatedDiameter,
+                                    it.date,
+                                    it.close_date,
+                                    it.kps,
+                                    it.ams
+                                )
+                            })
+                        }
+                    }
+                }
+                return true
+            }
+        })
 
         return binding.root
     }

@@ -10,11 +10,14 @@ interface AsteroidsDAO {
     @Query("SELECT * FROM asteroids WHERE date >= :currentDate")
     fun getAsteroids(currentDate: String) : Flow<List<Asteroids>>
 
-    @Query("SELECT date FROM asteroids ORDER BY date ASC LIMIT 1")
-    suspend fun getLatestDate() : String?
+    @Query("SELECT * FROM asteroids WHERE date == :currentDate")
+    fun getOneDayAsteroids(currentDate: String) : Flow<List<Asteroids>>
 
     @Query("DELETE FROM asteroids")
     suspend fun deleteAllAsteroids()
+
+    @Query("SELECT date FROM asteroids ORDER BY date ASC LIMIT 1")
+    suspend fun getLatestDate() : String?
 
     @Insert
     suspend fun addAsteroid(asteroids: List<Asteroids>)

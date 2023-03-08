@@ -15,4 +15,6 @@
     <string name="error_connect_text">Cannot connect to server</string>
     <string name="reconnect_btn_text">reconnect</string>
     <string name="is_hazardous_content_descr">image describe if asteroid is hazardous</string>
+    <string name="show_today_text">Show todays asteroids</string>
+    <string name="show_all_text">Show asteroids for the week</string>
 </resources>
