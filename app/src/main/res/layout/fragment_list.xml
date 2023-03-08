@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.asteroidradar.viewmodel.AsteroidsViewModel" />
+        <variable
+            name="reconnectClickListener"
+            type="com.example.asteroidradar.adapters.DefaultClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <ImageView
+            android:id="@+id/day_image"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:src="@drawable/placeholder_picture_of_day"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/day_image_content_descr"
+            imageSrc="@{viewModel.pictureOfTheDay}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/day_image_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="@{viewModel.pictureOfTheDay.component3()}"
+            android:padding="16dp"
+            android:background="#33000000"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@id/day_image"
+            app:layout_constraintEnd_toEndOf="@id/day_image"
+            app:layout_constraintBottom_toBottomOf="@id/day_image"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/asteroids_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="true"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/day_image"
+            tools:listitem="@layout/list_item"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

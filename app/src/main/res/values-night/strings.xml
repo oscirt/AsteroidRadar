@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="label_close_date">Close approach date</string>
+    <string name="label_estimated_diameter">Estimated diameter</string>
+    <string name="label_relative_velocity">Relative velocity</string>
+    <string name="label_distance_from_earth">Distance from earth</string>
+    <string name="about_magnitude_text">more about absolute magnitude</string>
+    <string name="hazardous_descr">is asteroid hazardous</string>
+    <string name="day_image_content_descr">picture of day</string>
+    <string name="error_connect_text">Cannot connect to server</string>
+    <string name="reconnect_btn_text">reconnect</string>
+</resources>
