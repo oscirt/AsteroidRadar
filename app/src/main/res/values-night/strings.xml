@@ -9,4 +9,5 @@
     <string name="day_image_content_descr">picture of day</string>
     <string name="error_connect_text">Cannot connect to server</string>
     <string name="reconnect_btn_text">reconnect</string>
+    <string name="is_hazardous_content_descr">image describe if asteroid is hazardous</string>
 </resources>
